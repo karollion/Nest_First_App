@@ -2,7 +2,8 @@
 
 ## Description
 
-First NestJS application, serwer for products and  orders
+First NestJS application, serwer for products and  orders.
+The application uses the MySQL database.
 
 ## Installation
 
