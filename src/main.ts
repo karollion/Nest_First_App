@@ -8,6 +8,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new LoggerInterceptor());
   app.setGlobalPrefix('api');
+
+  await app.enableShutdownHooks();
+
   await app.listen(3030);
 }
 
