@@ -11,22 +11,31 @@ datasource db {
 }
 
 model Product {
-  id          String @id @default(uuid())
-  name        String
-  price       Int
+  id String  @id @default(uuid())
+  name String
+  price Int
   description String
-
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  orders    Order[]
+
+  order Order[]
+}
+model Client {
+  id String @id @default(uuid())
+  name String
+  address String
+
+  order Order[]
 }
 
 model Order {
-  id        String  @id @default(uuid())
-  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  id String  @id @default(uuid())
+  client    Client? @relation(fields: [clientId], references: [id])
+  clientId  String?
+
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
   productId String?
-  client    String
-  address   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -25,14 +25,14 @@ export class OrdersController {
   @Get('/:id')
   async getById(@Param('id', new ParseUUIDPipe()) id: string) {
     const ord = await this.ordersService.getById(id);
-    if (!ord) throw new NotFoundException('Product not found');
+    if (!ord) throw new NotFoundException('Order not found');
     return ord;
   }
 
   @Delete('/:id')
   async deleteById(@Param('id', new ParseUUIDPipe()) id: string) {
     if (!(await this.ordersService.getById(id)))
-      throw new NotFoundException('Product not found');
+      throw new NotFoundException('Order not found');
 
     await this.ordersService.deleteById(id);
     return { success: true };
@@ -49,7 +49,7 @@ export class OrdersController {
     @Body() orderData: UpdateOrderDTO,
   ) {
     if (!(await this.ordersService.getById(id)))
-      throw new NotFoundException('Product not found');
+      throw new NotFoundException('Order not found');
 
     await this.ordersService.updateById(id, orderData);
     return { success: true };
