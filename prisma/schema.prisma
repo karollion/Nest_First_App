@@ -23,8 +23,8 @@ model Product {
 
 model Order {
   id        String  @id @default(uuid())
-  product   Product @relation(fields: [productId], references: [id])
-  productId String
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productId String?
   client    String
   address   String
 
